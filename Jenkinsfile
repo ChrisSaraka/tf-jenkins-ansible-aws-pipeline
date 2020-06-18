@@ -4,10 +4,20 @@ pipeline {
   PATH = "${PATH}:${getTerraformPath()}"
 	}
 	stages{
-		stage('terraform workspace and init'){
+		stage('Terraform Init'){
 			steps{
 				// sh "terraform workspace new dev"
 				sh "terraform init"
+			}
+		}
+		stage('Terraform dev worskpace'){
+			steps{
+				sh "terraform workspace select dev"
+			}
+		}
+		stage('Terraform Planning'){
+			steps{
+				sh "terraform plan -var-file=dev.tfvars -auto-approve"
 			}
 		}
 	}
