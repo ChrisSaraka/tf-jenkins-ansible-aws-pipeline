@@ -20,6 +20,16 @@ pipeline {
 				sh "terraform plan -var-file=dev.tfvars"
 			}
 		}
+		stage('Terraform Apply'){
+			steps{
+				sh "terraform apply -var-file=def.tfvars -auto-approve"
+			}
+		}
+		stage('Terraform Destroy'){
+			stapes{
+				sh "terraform destroy -var-file=dev.tfvars -auto-approve"
+			}
+		}
 	}
 }
 
