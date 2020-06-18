@@ -6,7 +6,7 @@ pipeline {
 	stages{
 		stage('terraform init'){
 			steps{
-				sh "terraform workspace new dev"
+				// sh "terraform workspace new dev"
 				sh "terraform init"
 			}
 		}
@@ -14,6 +14,6 @@ pipeline {
 }
 
 def getTerraformPath(){
-	def tfHome = tool name: 'terraform', type: 'terraform'
+	def tfHome = tool name: 'terraform', type: 'org.jenkinsci.plugins.terraform.TerraformInstallation'
 	return tfHome
 }
